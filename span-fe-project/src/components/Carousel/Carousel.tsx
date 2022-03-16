@@ -4,31 +4,44 @@ import { CarouselItem } from "./CarouselItem";
 
 type Props = {};
 
-const testArr = new Array(10).fill("x");
-console.log(testArr);
 export const Carousel = (props: Props) => {
   const [photos, setPhotos] = useState<any[]>();
   useEffect(() => {
     getTopicPhotos({ topicIdOrSlug: "act-for-nature" })
       .then((photo) => photo.response?.results)
       .then((s) => {
-        console.log(s);
         setPhotos(s);
       });
   }, []);
 
+  type TCarouselItem = { index: number; photo: any };
+  const item = (index: number, photo: any) => <CarouselItem key={index} index={index} image={photo.urls.thumb} />;
+  let col: any[] = [];
+  let temp: any[] = [];
+  const even = (num: number) => num % 2;
+  if (photos) {
+    const photoCols = photos?.map((photo, index) => {
+      console.log(photo.id, photo.description, photo.alt_description);
+      temp.push(item(index, photo));
+      if (even(index) && index !== 0) {
+        const c = <div className="flex flex-col flex-wrap flex-grow-0 snap-start">{temp.map((t) => t)}</div>;
+        col.push(c);
+        temp = [];
+        return c;
+      }
+    });
+  }
   return (
     // <div className="flex-1">
     //   <ul className=" justify-items-center ">
-    <div className="grid grid-flow-col grid-cols-[repeat(4,400px)] grid-rows-[250px_250px] overflow-scroll gap-4">
-      {photos &&
+    // <div className="grid grid-flow-col grid-cols-[repeat(4,400px)] grid-rows-[250px_250px] overflow-scroll gap-4">
+    <div className="flex flex-row flex-nowrap flex-grow-0 flex-shrink-0 space-x-3">
+      {photos && col.map((c) => c)}
+      {/* {photos &&
         photos.map((photo, index) => {
           console.log(photo);
           return <CarouselItem key={index} index={index} image={photo.urls.small} />;
-        })}
-      {/* {testArr.map((item, index) => {
-          return <CarouselItem key={item + index} index={item} image={item} />;
-        })} */}
+        })}  */}
     </div>
     //   </ul>
     // </div>
