@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.headerContainer {
+  @apply p-4 flex flex-row h-28;
+}
+
+.headerIconContainer {
+  @apply w-20 h-20 flex;
+}
+.headerIcon {
+  @apply p-4 text-center hover:cursor-pointer hover:text-orange-500 text-blue-500;
+}
+
+.headerHeading {
+  @apply flex-1 text-5xl text-left;
+}
