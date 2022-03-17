@@ -9,8 +9,9 @@
 .headerIconContainer {
   @apply w-20 h-20 flex;
 }
+
 .headerIcon {
-  @apply p-4 text-center hover:cursor-pointer hover:text-orange-500 text-blue-500;
+  @apply p-4 text-center hover:cursor-pointer hover:text-orange-500 text-blue-500 drop-shadow-xl;
 }
 
 .headerHeading {

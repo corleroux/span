@@ -1,30 +1,24 @@
-import { DotsCircleHorizontalIcon } from "@heroicons/react/outline";
-import React, { MouseEventHandler, useContext, useEffect, useState } from "react";
-import { ApiResponse } from "unsplash-js/dist/helpers/response";
-import { Basic } from "unsplash-js/dist/methods/users/types";
+import { useContext, useEffect } from "react";
 import { NavContext } from "../context/NavContext";
 import { TopicContext } from "../context/TopicContext";
-import { getTopicList, getTopicPhotos } from "../services/api";
+import { getTopicList } from "../services/api";
 import { MenuItem } from "./MenuItem";
 
-type Props = {};
+type Props = {
+  onSelectTopic: (e: Event | undefined, topic: string) => void;
+};
 
-export const Menu = (props: Props) => {
+export const Menu = ({ onSelectTopic }: Props) => {
   const { topic, setTopic, topics, setTopics } = useContext(TopicContext);
   const [nav, setNav] = useContext(NavContext);
   useEffect(() => {
     getTopicList().then((r) => {
-      console.log("Topics from api", r);
       setTopics(r);
     });
   }, []);
-  const onSelectTopic = (id: string, e: Event | undefined) => {
-    console.log(e, id);
-    setNav(() => ({ isOpen: false, isTopicSet: true }));
-  };
-  console.log("Topics", topics);
+
   return (
-    <div className="bg-stone-200 rounded-t-2xl h-full w-fit p-12">
+    <div className="bg-blue-900 rounded-2xl h-full w-1/3 ml-14 px-4 py-4">
       {topics &&
         topics.map((m) => {
           return <MenuItem key={m.id} data={m} id={m.id} title={m.title} onClick={onSelectTopic} />;

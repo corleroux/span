@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { NavContext } from "../../context/NavContext";
+import { TopicContext } from "../../context/TopicContext";
 import { getTopicList, getTopicPhotos } from "../../services/api";
 import { CarouselItem } from "./CarouselItem";
 
@@ -6,21 +8,23 @@ type Props = {};
 
 export const Carousel = (props: Props) => {
   const [photos, setPhotos] = useState<any[]>();
+  const { topic, setTopic, topics, setTopics } = useContext(TopicContext);
+  const [nav] = useContext(NavContext);
   useEffect(() => {
-    getTopicPhotos({ topicIdOrSlug: "act-for-nature" })
+    getTopicPhotos(nav.topicSlug)
       .then((photo) => photo.response?.results)
       .then((s) => {
         setPhotos(s);
       });
   }, []);
 
-  type TCarouselItem = { index: number; photo: any };
   const item = (index: number, photo: any) => <CarouselItem key={index} index={index} image={photo.urls.thumb} />;
   let col: any[] = [];
   let temp: any[] = [];
   const even = (num: number) => num % 2;
 
   if (photos) {
+    console.log(photos);
     const photoCols = photos?.map((photo, index) => {
       console.log(photo.id, photo.description, photo.alt_description);
       temp.push(item(index, photo));
