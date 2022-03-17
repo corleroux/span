@@ -19,6 +19,7 @@ export const Carousel = (props: Props) => {
   let col: any[] = [];
   let temp: any[] = [];
   const even = (num: number) => num % 2;
+
   if (photos) {
     const photoCols = photos?.map((photo, index) => {
       console.log(photo.id, photo.description, photo.alt_description);
