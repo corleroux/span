@@ -15,9 +15,7 @@ import { Carousel } from "./Carousel/Carousel";
 import { getTopic, getTopicList } from "../services/api";
 import { TopicContext } from "../context/TopicContext";
 
-type Props = {};
-
-export const Landing = (props: Props) => {
+export const Landing = () => {
   const [nav, setNav] = useContext(NavContext);
   const { topic, setTopic } = useContext(TopicContext);
   const carouselRef = useRef<HTMLDivElement>(null);
