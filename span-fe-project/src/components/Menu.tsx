@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Basic } from "unsplash-js/dist/methods/topics/types";
 import { NavContext } from "../context/NavContext";
 import { TopicContext } from "../context/TopicContext";
 import { getTopicList } from "../services/api";
@@ -20,7 +21,7 @@ export const Menu = ({ onSelectTopic }: Props) => {
   return (
     <div className="bg-blue-900 rounded-2xl h-full w-1/3 ml-14 px-4 py-4">
       {topics &&
-        topics.map((m) => {
+        topics.map((m: Basic) => {
           return <MenuItem key={m.id} data={m} id={m.id} title={m.title} onClick={onSelectTopic} />;
         })}
     </div>
