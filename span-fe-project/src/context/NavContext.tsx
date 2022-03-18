@@ -2,21 +2,30 @@ import React, { Children, createContext, PropsWithChildren, ReactNode, useState 
 
 type Props = {
   children: ReactNode;
-  value: any[];
 };
 
 type IMenu = {
   isOpen: boolean;
   isTopicSet: boolean;
-  topicSlug?: "";
+  topicSlug: { topicIdOrSlug: string };
 };
 
-const intialNavState: any[] = [];
+type IMenuState = [IMenu, React.Dispatch<React.SetStateAction<IMenu>>?];
+
+const initNavItems: IMenu = {
+  isOpen: true,
+  isTopicSet: false,
+  topicSlug: { topicIdOrSlug: "" },
+};
+
+const initNav: IMenuState = [initNavItems];
+
+export const intialNavState: IMenuState = initNav;
 
 export const NavContext = createContext(intialNavState);
 
 export const NavProvider = (props: PropsWithChildren<Props>) => {
-  const [nav, setNav] = useState<IMenu>({ isOpen: true, isTopicSet: false });
+  const [nav, setNav] = useState<IMenu>(initNavItems);
   console.log("NAV", nav);
   return <NavContext.Provider value={[nav, setNav]}>{props.children}</NavContext.Provider>;
 };

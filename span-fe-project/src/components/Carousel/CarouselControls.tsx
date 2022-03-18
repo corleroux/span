@@ -7,8 +7,6 @@ type Props = {
 };
 
 export const CarouselControls = (props: Props) => {
-  const handlePrevious = () => {};
-  const handleNext = () => {};
   const itemList = useMemo(
     () => React.Children.toArray(props.children).map((child) => console.log(child)),
     [props.children]
@@ -16,9 +14,7 @@ export const CarouselControls = (props: Props) => {
   return (
     <div>
       <div className="flex">
-        <div className="h-5 bg-grey-200 flex-[1_1_5%]">
-          <ChevronLeftIcon className=" w-[5%] py-8 text-stone-800" />
-        </div>
+        <div className="h-5 bg-grey-200 flex-[1_1_5%]"></div>
         <div className="h-5 bg-grey-200 flex-auto">one</div>
         <div className="h-10 border-4 flex-[1_1_5%] ">
           <ChevronRightIcon className="" />
