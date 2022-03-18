@@ -111,3 +111,5 @@ license.txt
 exports
 *.cache
 build
+main.pub
+main
