@@ -10,7 +10,7 @@ export const MenuItem = (props: Props) => {
   return (
     <div
       onClick={() => props.onClick(event, props.id)}
-      className="p.25 mt-4 flex items-center rounded-md align-middle px-2 py-1 duration-300 cursor-pointer hover:bg-blue-600 text-white relative border-l-[1px] border-b-[1px] border-blue-500"
+      className="p.25 mt-4 flex items-center rounded-md align-middle px-2 py-1 duration-300 cursor-pointer  text-white relative border-l-[1px] border-b-[2px] border-blue-500 hover:bg-blue-600 hover:border-b-[2px] hover:border-blue-500"
     >
       <span className="text-lg text-gray-200 font-medium">{props.title}</span>
       <span className="text-xs bg-gray-200 text-right place-self-center text-blue-800 font-medium rounded-full absolute right-1 py-0 px-2">
