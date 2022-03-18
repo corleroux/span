@@ -3,10 +3,6 @@
 
 name: Node.js CI
 
-defaults:
-  run:
-    working-directory: ./span-fe-project
-    
 on:
   push:
     branches: [ main ]
@@ -15,9 +11,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./span-fe-project
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
